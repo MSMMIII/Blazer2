@@ -1,0 +1,53 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = BlazerITChallenges
+build_property.RootNamespace = BlazerITChallenges
+build_property.ProjectDir = C:\Users\milan\Desktop\scool\it_challenges_3\projecten_afgewerkt\BlazerITChallenges\BlazerITChallenges\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\milan\Desktop\scool\it_challenges_3\projecten_afgewerkt\BlazerITChallenges\BlazerITChallenges
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/milan/Desktop/scool/it_challenges_3/projecten_afgewerkt/BlazerITChallenges/BlazerITChallenges/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/milan/Desktop/scool/it_challenges_3/projecten_afgewerkt/BlazerITChallenges/BlazerITChallenges/Pages/Dobbelen.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9iYmVsZW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/milan/Desktop/scool/it_challenges_3/projecten_afgewerkt/BlazerITChallenges/BlazerITChallenges/Pages/Foto.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm90by5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/milan/Desktop/scool/it_challenges_3/projecten_afgewerkt/BlazerITChallenges/BlazerITChallenges/Pages/Funfacts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRnVuZmFjdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/milan/Desktop/scool/it_challenges_3/projecten_afgewerkt/BlazerITChallenges/BlazerITChallenges/Pages/Geboortedatum.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2Vib29ydGVkYXR1bS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/milan/Desktop/scool/it_challenges_3/projecten_afgewerkt/BlazerITChallenges/BlazerITChallenges/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/milan/Desktop/scool/it_challenges_3/projecten_afgewerkt/BlazerITChallenges/BlazerITChallenges/Pages/MovieSearch.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTW92aWVTZWFyY2gucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/milan/Desktop/scool/it_challenges_3/projecten_afgewerkt/BlazerITChallenges/BlazerITChallenges/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/milan/Desktop/scool/it_challenges_3/projecten_afgewerkt/BlazerITChallenges/BlazerITChallenges/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-9ika0g0nw5

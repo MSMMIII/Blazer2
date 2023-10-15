@@ -1,0 +1,60 @@
+﻿@page "/funfacts"
+@inject IJSRuntime JS
+@inject NavigationManager NavManager
+@inject HttpClient Http
+
+
+<div class="container">
+    <h3>Opdracht geboortedatum FunFacts</h3>
+
+    @if (loaded == false)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @message
+                <button class="btn btn-primary btn-lg  mb-2" id="back" type="button" @onclick="MoveGeboorteDatum">Opnieuw</button>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private bool loaded = false;
+    private DateTime Bdate = DateTime.Now;
+    private DateTime today = DateTime.Now;
+    private RenderFragment message = @<p>"text"</p>;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //message +=@<p>"Je bent geboren op "</p>;
+        //haal datum op
+        await GetBD();
+        var culture = new System.Globalization.CultureInfo("nl-NL");
+        var aantaldagen = Math.Round((today - Bdate).TotalDays);
+        var levenMS = Math.Round(((80.3 * 365) - aantaldagen) * 24 * 3600 * 1000);
+        DateTime einde = DateTime.Now.AddMilliseconds(levenMS);
+        message =
+    @<p>
+        Je bent geboren op @Bdate.ToLongDateString()<br />
+        Vandaag is het @DateTime.Now.ToLongDateString()<br />
+        Je loopt al @aantaldagen dagen op deze wereldbol rond.<br />
+        Je zal vermoedelijk sterven op  @einde.ToLongDateString()<br />
+    </p>;
+
+        loaded = true;
+    }
+
+    private async Task GetBD()
+    {
+        Bdate = await JS.InvokeAsync<DateTime>("localStorage.getItem", "Bdate");
+    }
+
+    private void MoveGeboorteDatum()
+    {
+        NavManager.NavigateTo("/geboortedatum");
+    }
+}

@@ -1,0 +1,63 @@
+﻿@page "/foto"
+<PageTitle>Foto</PageTitle>
+
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <h1>Random foto</h1>
+    <div style="width: 100%; max-width: 500px;">
+        <img src="@selectedFotoUrl" alt="Willekeurige Foto" style="max-width: 100%; height: auto;" />
+    </div>
+</div>
+
+<div style="position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); text-align: center; margin-bottom: 200px;">
+    <button @onclick="SelectRandomFoto" style="background-color: darkslateblue; color: ghostwhite; padding: 10px 20px; border: none; cursor: pointer; border-radius: 10px;">
+        Kies een willekeurige foto
+    </button>
+    <p style="margin-top: 10px;">@selectedFotoText</p>
+</div>
+
+@code {
+    // De fotoUrls-array bevat de paden naar de afbeeldingen die worden weergegeven.
+    private string[] fotoUrls = new string[]
+    {
+        "/images/breakfast.jpg",
+        "/images/flower.jpg",
+        "/images/flower_red.jpg",
+        "/images/fontain.jpg",
+        "/images/lunch.jpg",
+        "/images/sunset.jpg",
+    };
+
+    // De selectedFotoUrl variabele wordt gebruikt om het pad van de geselecteerde foto bij te houden.
+    private string selectedFotoUrl;
+    // De selectedFotoText variabele wordt gebruikt om tekst onder de knop weer te geven,
+    //  die wordt bijgewerkt met informatie over de geselecteerde foto nadat de knop is geklikt.
+    private string selectedFotoText;
+
+
+    // De SelectRandomFoto()-methode wordt uitgevoerd wanneer de knop wordt geklikt. 
+    // Deze methode genereert een willekeurig getal tussen 0 en het aantal foto's in de fotoUrls-array. 
+    // Het geselecteerde foto-pad wordt bijgewerkt met het pad van de willekeurig gekozen foto, 
+    // en selectedFotoText wordt geüpdatet om het geselecteerde foto-indexnummer weer te geven.
+
+    private void SelectRandomFoto()
+    {
+        var random = new Random();
+        int randomIndex = random.Next(0, fotoUrls.Length);
+        selectedFotoUrl = fotoUrls[randomIndex];
+        selectedFotoText = $"Selected photo: {randomIndex + 1}";
+    }
+}
+
+@* Wanneer je op de knop "Kies een willekeurige foto" klikt, wordt de SelectRandomFoto-methode aangeroepen.
+
+Binnen deze methode wordt een nieuw willekeurig getal gegenereerd met behulp van de Random-klasse. Dit getal wordt opgeslagen in de variabele randomIndex.
+
+Het doel van randomIndex is om een willekeurige index te kiezen uit de fotoUrls-array, wat de lijst van beschikbare foto's is. De Next-methode van de Random-klasse genereert een willekeurig geheel getal binnen het opgegeven bereik, in dit geval van 0 (inclusief) tot het aantal foto's in de array (exclusief).
+
+Nadat randomIndex is berekend, wordt het geselecteerde foto-pad (selectedFotoUrl) bijgewerkt met het pad van de foto die overeenkomt met deze index. Met andere woorden, het kiest een willekeurige foto uit de lijst en geeft het pad van die foto door aan de afbeelding op de pagina.
+
+Ten slotte wordt de selectedFotoText-variabele geüpdatet om het geselecteerde foto-indexnummer weer te geven. We voegen 1 toe aan randomIndex omdat array-indexen in de meeste programmeertalen vanaf 0 beginnen, maar het nummer van de geselecteerde foto willen weergeven als een gewoon nummer (bijv. 1 voor de eerste foto, 2 voor de tweede foto, enz.). *@
+
+
+
+  

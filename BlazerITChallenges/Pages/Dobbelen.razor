@@ -1,0 +1,124 @@
+﻿@page "/dobbelen"
+<PageTitle>Dobbelen</PageTitle>
+
+<h1>Dobbelen</h1>
+
+<div class="container mt-4">
+    <div class="row">
+        @for (int i = 1; i <= 12; i++)
+        {
+            <div class="col-md-3 mb-3">
+                <div class="@($"card text-white bg-secondary {(IsWinner(i) ? "bg-success" : "")}")">
+                    <div class="card-body">
+                        <h5 class="card-title">speler @i</h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-6 align-self-center text-center">
+            <!-- Display the result message here -->
+            <div class="alert alert-info" id="result" role="alert">@message</div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-3 text-center">
+            <button id="play" @onclick="Play" class="btn btn-primary">PLAY</button>
+        </div>
+        <div class="col-3 text-center">
+            <button id="reset" @onclick="Reset" class="btn btn-danger">RESET</button>
+        </div>
+    </div>
+
+    <!-- Input for user to enter the number of players -->
+    <div class="row justify-content-center mt-3">
+        <div class="col-6 text-center">
+            <input type="number" @bind="targetCount" placeholder="Enter the number of players (1-12)" min="1" max="12" />
+        </div>
+    </div>
+
+    <!-- Display the message under the input box -->
+    <div class="row justify-content-center mt-3">
+        <div class="col-6 text-center">
+            <p>Hoeveel spelers denk je dat er een 6 gaan gooien? (1-12)</p>
+        </div>
+    </div>
+
+    <!-- Display the winning and losing streak counters -->
+    <div class="row justify-content-center mt-3">
+        <div class="col-6 text-center">
+            <p>Wins: @winningStreak</p>
+            <p>Loses: @losingStreak</p>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int targetCount = 0; // Het opgegeven aantal spelers dat een 6 moet gooien.
+    private int sixCount = 0;   // Aantal spelers dat een 6 heeft gegooid.
+    private string message = ""; // Bericht voor de gebruiker.
+    private int winningStreak = 0; // Aantal opeenvolgende winsten.
+    private int losingStreak = 0; // Aantal opeenvolgende verliezen.
+
+    private bool IsWinner(int playerNumber)
+    {
+        // Controleer of de speler een winnaar is (een 6 heeft gegooid).
+        return playerNumber <= sixCount;
+    }
+
+    private void Play()
+    {
+        // Reset het aantal spelers dat een 6 heeft gegooid en het bericht.
+        sixCount = 0;
+        message = "";
+
+        // Check if the entered target count is valid
+        if (targetCount >= 1 && targetCount <= 12)
+        {
+            SimulateGame();
+        }
+        else
+        {
+            message = "Het opgegeven aantal spelers moet tussen 1 en 12 liggen.";
+        }
+    }
+
+    private void Reset()
+    {
+        // Reset het spel door het bericht leeg te maken en opnieuw te beginnen.
+        message = "";
+        sixCount = 0;
+        targetCount = 0;
+        winningStreak = 0;
+        losingStreak = 0;
+    }
+
+    private void SimulateGame()
+    {
+        // Simuleer het dobbelen voor elke speler.
+        Random random = new Random();
+        for (int i = 1; i <= 12; i++)
+        {
+            int diceResult = random.Next(1, 7); // Willekeurige waarde tussen 1 en 6.
+            if (diceResult == 6)
+            {
+                sixCount++;
+            }
+        }
+
+        // Controleer of het opgegeven aantal spelers een 6 heeft gegooid.
+        if (sixCount == targetCount)
+        {
+            message = "Gefeliciteerd, je hebt gewonnen!";
+            winningStreak++;
+        }
+        else
+        {
+            message = "Helaas, je hebt niet gewonnen.";
+            losingStreak++;
+        }
+    }
+}

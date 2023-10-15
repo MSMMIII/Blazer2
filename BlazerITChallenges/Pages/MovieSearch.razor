@@ -1,0 +1,115 @@
+﻿@page "/movies"
+@using System.Net.Http.Json
+@inject HttpClient httpClient
+
+<h1>Movies</h1>
+
+<div class="search-bar">
+    <input type="text" @bind="searchTerm" placeholder="Enter a movie name" class="search-input" />
+    <button @onclick="SearchMovies" class="search-button">Search</button>
+</div>
+
+@if (movies != null)
+{
+    <div class="movies-container">
+        @foreach (var movie in movies)
+        {
+            <div class="movie-card">
+                @if (!string.IsNullOrEmpty(movie.Poster))
+                {
+                    <img class="movie-poster" src="@movie.Poster" alt="@movie.Title" />
+                }
+                <p>@movie.Title</p>
+                @if (!string.IsNullOrEmpty(movie.Year))
+                {
+                    <p class="movie-year">@movie.Year</p>
+                }
+            </div>
+        }
+    </div>
+}
+else if (searched)
+{
+    <p>No movies found.</p>
+}
+
+@code {
+    private string searchTerm;
+    private List<Movie> movies;
+    private bool searched = false;
+
+    private async Task SearchMovies()
+    {
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            try
+            {
+                string apiKey = "f9f96b3d";
+                string apiUrl = $"https://www.omdbapi.com/?s={searchTerm}&apikey={apiKey}";
+
+                var response = await httpClient.GetFromJsonAsync<OMDbResponse>(apiUrl);
+                movies = response?.Search;
+                searched = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
+
+    private class Movie
+    {
+        public string Title { get; set; }
+        public string Poster { get; set; }
+        public string Year { get; set; }
+    }
+
+    private class OMDbResponse
+    {
+        public List<Movie> Search { get; set; }
+    }
+}
+
+<style>
+    .search-bar {
+        text-align: center;
+    }
+
+    .search-input {
+        padding: 5px;
+        font-size: 16px;
+        width: 300px;
+    }
+
+    .search-button {
+        padding: 5px 10px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    .movies-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .movie-card {
+        margin: 10px;
+        text-align: center;
+        max-width: 200px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .movie-poster {
+        max-width: 100%;
+        height: 200px;
+    }
+</style>
+
+

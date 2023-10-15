@@ -1,0 +1,67 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<head>
+    <style>
+        .divbutton {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .buttons {
+            margin: 20px; 
+            width: 200px; 
+            background-color: darkslateblue; 
+            color: ghostwhite; 
+            border: none; 
+            padding: 10px; 
+            text-align: center;
+            border-radius: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Welkom op het Blazor-project van Milan Sysmans!</h1>
+    <p>Hier vind je een vertaling van Javascript-oefeningen naar C#.</p>
+
+    <div class="divbutton">
+        <button class="buttons" @onclick="NavigateToDobbelen">Dobbelen</button>
+        <button class="buttons" @onclick="NavigateToMovies">Movies</button>
+        <button class="buttons" @onclick="NavigateToGeboortedatum">Geboortedatum</button>
+        <button class="buttons" @onclick="NavigateToFunFacts">FunFacts</button>
+        <button class="buttons" @onclick="NavigateToFoto">Foto</button>
+    </div>
+</body>
+
+@inject NavigationManager Navigation
+
+@code {
+    private void NavigateToDobbelen()
+    {
+        Navigation.NavigateTo("/dobbelen"); 
+    }
+
+    private void NavigateToMovies()
+    {
+        Navigation.NavigateTo("/movies");
+    }
+
+    private void NavigateToGeboortedatum()
+    {
+        Navigation.NavigateTo("/geboortedatum");
+    }
+
+    private void NavigateToFunFacts()
+    {
+        Navigation.NavigateTo("/funfacts"); 
+    }
+
+    private void NavigateToFoto()
+    {
+        Navigation.NavigateTo("/foto"); 
+    }
+}

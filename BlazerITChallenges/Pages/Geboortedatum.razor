@@ -1,0 +1,52 @@
+﻿@page "/geboortedatum"
+@inject IJSRuntime JS
+@inject NavigationManager NavManager
+
+<PageTitle>Funfacts</PageTitle>
+
+<div class="container">
+
+    <h3>Opdracht geboortedatum FunFacts</h3>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <form name="frmLeeftijd">
+                <div class="row ">
+                    <div class="col-auto mb-3">
+                        <label for="geboortedatum">Je geboortedatum</label>
+                        <input type="date" @bind="@Bdate" id="geboortedatum" min="1970-01-01">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-auto mb-3">
+                        <button class="btn btn-primary btn-lg  mb-2" @onclick="MoveToFunFacts" id="check" type="button">
+                            Check FunFacts
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+@code {
+    private DateTime Bdate = DateTime.Now;
+    private async void MoveToFunFacts()
+    {
+        await SaveBD();
+        NavManager.NavigateTo("/funfacts");
+    }
+
+    private async Task SaveBD()
+    {
+        await JS.InvokeVoidAsync("localStorage.setItem", "Bdate", Bdate);
+    }
+}
+
+
+@*     https://www.thomasclaudiushuber.com/2021/04/19/store-data-of-your-blazor-app-in-the-local-storage-and-in-the-session-storage/
+    https://www.youtube.com/watch?v=kNzvcSSUV44 *@
